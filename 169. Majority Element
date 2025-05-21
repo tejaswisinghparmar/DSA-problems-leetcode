@@ -1,0 +1,6 @@
+class Solution:
+    def majorityElement(self, nums: List[int]) -> int:
+        ele = set(nums)
+        for i in ele:
+            if nums.count(i) > len(nums) // 2:
+                return i
