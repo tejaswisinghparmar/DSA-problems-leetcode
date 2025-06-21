@@ -1,0 +1,20 @@
+from collections import Counter
+import math
+
+class Solution:
+    def minimumDeletions(self, word: str, k: int) -> int:
+        freq = Counter(word)  # count frequencies of each character
+        counts = list(freq.values())
+        ans = math.inf
+
+        # Try every possible minimum frequency among the character counts
+        for minf in counts:
+            deletions = 0
+            for f in counts:
+                if f < minf:
+                    deletions += f
+                elif f > minf + k:
+                    deletions += f - (minf + k)
+            ans = min(ans, deletions)
+
+        return ans
